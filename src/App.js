@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from './hoc/Aux';
+import Auxi from './hoc/Auxi';
 import Navbar from './containers/Navbar/Navbar';
 import ContentPage from './containers/ContentPage/ContentPage';
 import products from './apiDemo/Products';
@@ -26,10 +26,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Aux>
+        <Auxi>
           <Navbar clicked={this.changeContentPageHandler.bind(this)} />
           <ContentPage title={this.state.currentContentPage}/>
-        </Aux>
+        </Auxi>
       </div>
     );
   }
