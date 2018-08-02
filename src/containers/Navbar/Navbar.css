@@ -1,0 +1,32 @@
+.Wrapper {
+    width: 100%;
+    background: linear-gradient(#1E1E1E, #2D2D2D);
+    display: inline-block;
+}
+
+.LeftBar {
+    float: left;
+}
+
+.RightBar {
+    float: right;
+}
+
+.NavLink {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+    color: lightgray;
+    text-decoration: none;
+}
+
+.NavLink img {
+    height: 16px;
+}
+
+.NavLink:hover {
+    background-color: #212121;
+    cursor: pointer;
+    color: white;
+    border: 4px black;
+}
