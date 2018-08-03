@@ -1,0 +1,21 @@
+.List table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.List td, th {
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+
+.List tr:nth-child(even){background-color: #f2f2f2;}
+
+.List tr:hover {background-color: #ddd;}
+
+.List th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background: linear-gradient(#1E1E1E, #2D2D2D);
+    color: white;
+}

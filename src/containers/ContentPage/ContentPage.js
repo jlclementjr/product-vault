@@ -11,7 +11,10 @@ const contentPage = (props) => {
 
     return (
         <div className={classes.Content}>
-            <h1>{props.title}</h1>
+            <h1>
+                <span>{props.title}</span>
+                <input placeholder='Search'></input>
+            </h1>
             <hr/>
             {page}
         </div>
