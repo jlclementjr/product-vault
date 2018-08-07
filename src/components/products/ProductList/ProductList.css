@@ -19,3 +19,11 @@
     background: linear-gradient(#1E1E1E, #2D2D2D);
     color: white;
 }
+
+.NumberColumn {
+    text-align: right;
+}
+
+#NumberColumn {
+    text-align: right;
+}

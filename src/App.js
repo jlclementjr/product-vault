@@ -8,15 +8,22 @@ class App extends Component {
   constructor (props){
     super(props);
     this.state = {
-      currentContentPage: 'Dashboard',
+      currentContentPage: this.props.page,
       productList: products
     }
   }
 
-  addProduct(productToAdd){
-    var newProductList = [...this.state.productList];
-    newProductList.push(productToAdd);
-    this.setState({productList: newProductList});
+  goTo(route) {
+    this.props.history.replace(`/${route}`);
+    this.changeContentPageHandler(route);
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
   }
 
   changeContentPageHandler = (newPage) => {
@@ -24,11 +31,17 @@ class App extends Component {
   }
 
   render() {
+    const {isAuthenticated} = this.props.auth;
+
     return (
       <div>
         <Auxi>
-          <Navbar clicked={this.changeContentPageHandler.bind(this)} />
-          <ContentPage title={this.state.currentContentPage}/>
+          <Navbar isAuthenticated={ isAuthenticated } 
+                  login={this.login.bind(this)}
+                  logout={this.logout.bind(this)}
+                  //clicked={this.changeContentPageHandler.bind(this)}
+                  clicked={this.goTo.bind(this)} />
+          <ContentPage isAuthenticated={isAuthenticated} title={this.state.currentContentPage}/>
         </Auxi>
       </div>
     );
