@@ -7,7 +7,13 @@ const navbar = (props) => {
         const loggedIn = props.isAuthenticated();
 
         //Check for Login
-        var leftBar = null;
+        var leftBar = (
+            <div className = {classes.LeftBar}>
+                <NavLink className = {classes.NavLink} to='/Home' onClick={() => props.clicked('Home')}>Home</NavLink>
+                <NavLink className = {classes.NavLink} to='/About' onClick={() => props.clicked('About')}>About</NavLink>
+                <NavLink className = {classes.NavLink} to='/Contact' onClick={() => props.clicked('Contact')}>Contact</NavLink>
+            </div>
+        );
 
         if (loggedIn){
             leftBar = (

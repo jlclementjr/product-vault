@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Auxi from './hoc/Auxi';
 import Navbar from './containers/Navbar/Navbar';
 import ContentPage from './containers/ContentPage/ContentPage';
-import products from './apiDemo/Products';
+import ApiDemo from './apiDemo/ApiDemo';
 
 class App extends Component {
   constructor (props){
     super(props);
     this.state = {
       currentContentPage: this.props.page,
-      productList: products
+      productList: ApiDemo.GetAllProducts
     }
   }
 
@@ -24,6 +24,7 @@ class App extends Component {
 
   logout() {
     this.props.auth.logout();
+    this.goTo('Home');
   }
 
   changeContentPageHandler = (newPage) => {

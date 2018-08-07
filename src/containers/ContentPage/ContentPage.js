@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './ContentPage.css';
+import HomeContentPage from '../../components/home/HomeContentPage/HomeContentPage';
 import ProductContentPage from '../../components/products/ProductContentPage/ProductContentPage';
 
 const contentPage = (props) => {
@@ -8,6 +9,8 @@ const contentPage = (props) => {
 
     if (props.title === 'Products')
         page = <ProductContentPage/>;
+    else if (props.title === 'Home')
+        page = <HomeContentPage />;
 
     return (
         <div className={classes.Content}>

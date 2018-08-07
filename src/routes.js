@@ -17,7 +17,10 @@ export const makeMainRoutes = () => {
   return (
       <Router history={history}>
         <Switch>
-          <Route exact path="/" render={(props) => <App auth={auth} page='Dashboard' {...props} />} />
+          <Route exact path="/" render={(props) => <App auth={auth} page='Home' {...props} />} />
+          <Route path="/Home" render={(props) => <App auth={auth} page='Home' {...props} />} />
+          <Route path="/About" render={(props) => <App auth={auth} page='About' {...props} />} />
+          <Route path="/Contact" render={(props) => <App auth={auth} page='Contact' {...props} />} />
           <Route path="/Dashboard" render={(props) => <App auth={auth} page='Dashboard' {...props} />} />
           <Route path="/SalesOrders" render={(props) => <App auth={auth} page='Sales Orders' {...props} />} />
           <Route path="/Customers" render={(props) => <App auth={auth} page='Customers' {...props} />} />
