@@ -1,0 +1,20 @@
+.Wrapper {
+    width: 200px;
+    padding: 8px;
+    display: block;
+}
+
+.NavLink {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.NavLink:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    margin-top: 0;
+}

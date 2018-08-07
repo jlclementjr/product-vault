@@ -3,6 +3,7 @@ const products =
         {
             id: 1,
             sku: 'REY520ES1',
+            inventoried: true,
             upc: 80888464846,
             name: 'Medium Round Trivet',
             price: 56.00
@@ -10,6 +11,7 @@ const products =
         {
             id: 2,
             sku: 'RVT545US2',
+            inventoried: true,
             upc: 45884565646,
             name: 'Round Pizza Board, Small',
             price: 39.00
@@ -17,6 +19,7 @@ const products =
         {
             id: 3,
             sku: 'MVH546UU9',
+            inventoried: true,
             upc: 45688848462,
             name: 'Galvi Knife Holder',
             price: 67.00
@@ -24,6 +27,7 @@ const products =
         {
             id: 4,
             sku: 'FEY254EN3',
+            inventoried: true,
             upc: 88489654644,
             name: '120" Pedestal Table',
             price: 1450.00
@@ -31,6 +35,7 @@ const products =
         {
             id: 5,
             sku: 'REY859US2',
+            inventoried: true,
             upc: 45612354848,
             name: 'Large Round Cutting Board',
             price: 58.00

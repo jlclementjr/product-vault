@@ -5,21 +5,23 @@ import ProductContentPage from '../../components/products/ProductContentPage/Pro
 
 const contentPage = (props) => {
 
-    var page = null;
+    var content = null;
 
     if (props.title === 'Products')
-        page = <ProductContentPage/>;
+        content = <ProductContentPage/>;
     else if (props.title === 'Home')
-        page = <HomeContentPage />;
+        content = <HomeContentPage />;
 
     return (
-        <div className={classes.Content}>
+        <div className={classes.Wrapper}>
             <h1>
                 <span>{props.title}</span>
                 <input placeholder='Search'></input>
             </h1>
             <hr/>
-            {page}
+            <div className={classes.Content}>
+                {content}
+            </div>
         </div>
     );
 }

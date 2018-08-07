@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ProductList from '../ProductList/ProductList';
 import Products from '../../../apiDemo/Products';
+import ContentSidebar from '../../../containers/ContentSidebar/ContentSidebar';
+import Auxi from '../../../hoc/Auxi';
 
 class ProductContentPage extends Component 
 {
@@ -13,7 +15,10 @@ class ProductContentPage extends Component
 
     render(){
         return(
-            <ProductList products={this.state.products}/>
+            <Auxi>
+                <ContentSidebar />
+                <ProductList products={this.state.products}/>
+            </Auxi>
         );
     }
 }
