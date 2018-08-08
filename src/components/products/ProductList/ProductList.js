@@ -10,8 +10,6 @@ const productList = (props) =>
                 <thead>
                     <th>Sku</th>
                     <th>Name</th>
-                    <th id={classes.NumberColumn}>Base Price</th>
-                    <th>Inventoried</th>
                     <th>UPC</th>
                 </thead>
                 <tbody>
@@ -19,8 +17,6 @@ const productList = (props) =>
                         <tr key={product.id}>
                             <td>{product.sku}</td>
                             <td>{product.name}</td>
-                            <td className={classes.NumberColumn}>{withCommas(product.price.toFixed(2))}</td>
-                            <td>{product.inventoried.toString()}</td>
                             <td>{product.upc}</td>
                         </tr>
                     )}

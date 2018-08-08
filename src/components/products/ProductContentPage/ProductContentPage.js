@@ -9,15 +9,29 @@ class ProductContentPage extends Component
     constructor (props) {
         super(props);
         this.state = {
-            products: Products
+            isLoading: true,
+            products: null,
         }
     }
 
+    componentDidMount()
+    {
+        fetch('http://localhost:64070/api/products')
+        .then(response => response.json())
+        .then(products => this.setState({products, isLoading: false}));
+    }
+
+
     render(){
+        
+        var list = <div>Loading...</div>;
+        if (!this.state.isLoading && this.state.products)
+            list = <ProductList products={this.state.products}/>
+    
         return(
             <Auxi>
                 <ContentSidebar />
-                <ProductList products={this.state.products}/>
+                {list}
             </Auxi>
         );
     }
