@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './ContentPage.css';
 import HomeContentPage from '../../components/home/HomeContentPage/HomeContentPage';
 import ProductContentPage from '../../components/products/ProductContentPage/ProductContentPage';
+import CustomerContentPage from '../../components/customers/CustomerContentPage/CustomerContentPage';
 
 const contentPage = (props) => {
 
@@ -11,6 +12,8 @@ const contentPage = (props) => {
         content = <ProductContentPage/>;
     else if (props.title === 'Home')
         content = <HomeContentPage />;
+    else if (props.title === 'Customers')
+        content = <CustomerContentPage/>;
 
     return (
         <div className={classes.Wrapper}>

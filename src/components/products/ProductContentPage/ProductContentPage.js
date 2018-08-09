@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ProductList from '../ProductList/ProductList';
-import Products from '../../../apiDemo/Products';
 import ContentSidebar from '../../../containers/ContentSidebar/ContentSidebar';
 import Auxi from '../../../hoc/Auxi';
 

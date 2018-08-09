@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './ProductList.css';
-import { withCommas } from '../../../helpers/numberFormatter';
 
 const productList = (props) =>
 {
@@ -8,9 +7,11 @@ const productList = (props) =>
         <div className={classes.List}>
             <table>
                 <thead>
-                    <th>Sku</th>
-                    <th>Name</th>
-                    <th>UPC</th>
+                    <tr>
+                        <th>Sku</th>
+                        <th>Name</th>
+                        <th>UPC</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {props.products.map(product =>
