@@ -8,12 +8,19 @@ const contentPage = (props) => {
 
     var content = null;
 
-    if (props.title === 'Products')
-        content = <ProductContentPage/>;
-    else if (props.title === 'Home')
-        content = <HomeContentPage />;
-    else if (props.title === 'Customers')
-        content = <CustomerContentPage/>;
+    switch (props.title){
+        case 'Home':
+        content = <HomeContentPage />
+        break;
+        case 'Products':
+        content = <ProductContentPage/>
+        break;
+        case 'Customers':
+        content = <CustomerContentPage />
+        break;
+        default:
+        content = <HomeContentPage />
+    }
 
     return (
         <div className={classes.Wrapper}>

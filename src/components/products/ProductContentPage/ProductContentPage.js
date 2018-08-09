@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ProductList from '../ProductList/ProductList';
 import ContentSidebar from '../../../containers/ContentSidebar/ContentSidebar';
 import Auxi from '../../../hoc/Auxi';
+import { NavLink } from 'react-router-dom';
+import classes from '../../../containers/ContentSidebar/ContentSidebar.css'
 
 class ProductContentPage extends Component 
 {
@@ -10,6 +12,7 @@ class ProductContentPage extends Component
         this.state = {
             isLoading: true,
             products: null,
+            isFetchError: false
         }
     }
 
@@ -17,20 +20,38 @@ class ProductContentPage extends Component
     {
         fetch('http://localhost:64070/api/products')
         .then(response => response.json())
+        .catch(err => this.handleFetchError(err))
         .then(products => this.setState({products, isLoading: false}));
     }
 
+    handleFetchError(error){
+        console.log('Handling error.' + error);
+        this.setState({isFetchError: true});
+    }
 
     render(){
         
-        var list = <div>Loading...</div>;
-        if (!this.state.isLoading && this.state.products)
-            list = <ProductList products={this.state.products}/>
-    
+        var content = <div>Loading...</div>;
+
+        if (!this.state.isLoading){
+            if (!this.state.isFetchError){
+                content = <ProductList products={this.state.products}/>
+            }else{
+                content = <div>Oops! Something went wrong...</div>
+            }
+        }
+
+        var links = (
+            <div>
+                <NavLink className={classes.NavLink} to='/products/all'>All Products</NavLink>
+                <NavLink className={classes.NavLink} to='/products/categories'>Categories</NavLink>
+            </div>
+        )
+
         return(
             <Auxi>
-                <ContentSidebar />
-                {list}
+                <ContentSidebar links={links} />
+                {content}
             </Auxi>
         );
     }

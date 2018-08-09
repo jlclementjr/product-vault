@@ -10,6 +10,7 @@ class CustomerContentPage extends Component
         this.state = {
             isLoading: true,
             customers: null,
+            isFetchError: false
         }
     }
 
@@ -17,20 +18,29 @@ class CustomerContentPage extends Component
     {
         fetch('http://localhost:64070/api/customers')
         .then(response => response.json())
+        .catch(err => this.handleFetchError(err))
         .then(customers => this.setState({customers, isLoading: false}));
     }
 
+    handleFetchError(error){
+        console.log('Handling error.' + error);
+        this.setState({isFetchError: true});
+    }
 
     render(){
         
-        var list = <div>Loading...</div>;
-        if (!this.state.isLoading && this.state.customers)
-            list = <CustomerList customers={this.state.customers}/>
+        var content = <div>Loading...</div>;
+        if (!this.state.isLoading){
+            if (this.state.isFetchError)
+                content = <div>Oops! Something went wrong!</div>
+            else
+            content = <CustomerList customers={this.state.customers}/>
+        }
     
         return(
             <Auxi>
                 <ContentSidebar />
-                {list}
+                {content}
             </Auxi>
         );
     }
