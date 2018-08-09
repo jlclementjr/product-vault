@@ -18,7 +18,10 @@ class ProductContentPage extends Component
 
     componentDidMount()
     {
-        fetch('http://localhost:64070/api/products')
+        var myHeaders = new Headers();
+        myHeaders.append('Client-ID', 'a6yypKZIdFEOspJ6Z5Ncc3RGJGF7raSt');
+
+        fetch('http://localhost:64070/api/products',{'Client-ID':'a6yypKZIdFEOspJ6Z5Ncc3RGJGF7raSt'})
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(products => this.setState({products, isLoading: false}));
