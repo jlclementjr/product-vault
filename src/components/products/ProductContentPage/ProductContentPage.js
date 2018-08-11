@@ -19,9 +19,9 @@ class ProductContentPage extends Component
     componentDidMount()
     {
         var myHeaders = new Headers();
-        myHeaders.append('Client-ID', 'a6yypKZIdFEOspJ6Z5Ncc3RGJGF7raSt');
+        myHeaders.append('authorization', 'Bearer AccessToken');
 
-        fetch('http://localhost:64070/api/products',{'Client-ID':'a6yypKZIdFEOspJ6Z5Ncc3RGJGF7raSt'})
+        fetch('http://localhost:64070/api/products', myHeaders)
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(products => this.setState({products, isLoading: false}));
