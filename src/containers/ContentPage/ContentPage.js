@@ -22,6 +22,12 @@ const contentPage = (props) => {
         content = <HomeContentPage />
     }
 
+    if (props.title !== 'Home' && props.title !== 'About' && props.title !== 'Contact'){
+        if (!props.isAuthenticated){
+            content = <HomeContentPage />
+        }
+    }
+
     return (
         <div className={classes.Wrapper}>
             <h1>

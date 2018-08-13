@@ -24,23 +24,26 @@ class ProductContentPage extends Component
 
     componentDidMount()
     {
+        if (this.state.isSingleProduct)
+            this.FetchSingleProduct(this.state.singleProductID);
+        else
+            this.FetchAllProducts();
+    }
+
+    FetchAllProducts(){
         var myHeaders = new Headers();
         myHeaders.append('authorization', 'Bearer AccessToken');
 
-        if (this.state.isSingleProduct)
-            this.FetchSingleProduct(myHeaders, this.state.singleProductID);
-        else
-            this.FetchAllProducts(myHeaders);
-    }
-
-    FetchAllProducts(myHeaders){
         fetch(url, myHeaders)
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(products => this.setState({products, isLoading: false}));
     }
 
-    FetchSingleProduct(myHeaders, productID){
+    FetchSingleProduct(productID){
+        var myHeaders = new Headers();
+        myHeaders.append('authorization', 'Bearer AccessToken');
+
         const newUrl = url + '/' + productID.toString();
         fetch(newUrl, myHeaders)
         .then(response => response.json())
@@ -59,9 +62,26 @@ class ProductContentPage extends Component
             singleProductID: productID,
             isSingleProduct: true
         })
-        var myHeaders = new Headers();
-        myHeaders.append('authorization', 'Bearer AccessToken');
-        this.FetchSingleProduct(myHeaders, productID);
+        this.FetchSingleProduct(productID);
+    }
+
+    handleBackToProductListClick = () =>{
+        this.setState({
+            isLoading: true,
+            isSingleProduct: false
+        });
+
+        this.FetchAllProducts();
+    }
+
+    filterProductListByCategory = (category) =>{
+        console.log('Filter Product List by Category');
+        this.setState({
+            isLoading: true,
+            isSingleProduct: false
+        })
+
+        this.FetchAllProducts();
     }
 
     render(){
@@ -72,7 +92,9 @@ class ProductContentPage extends Component
             if (!this.state.isFetchError)
             {
                 if (this.state.isSingleProduct)
-                    content = <SingleProduct product={this.state.singleProduct}/>
+                    content = <SingleProduct product={this.state.singleProduct} 
+                    backClick={this.handleBackToProductListClick.bind(this)}
+                    />
                 else
                     content = <ProductList products={this.state.products} clicked={this.handleClickedProductFromList.bind(this)}/>
             }else{
@@ -82,7 +104,7 @@ class ProductContentPage extends Component
 
         var links = (
             <div>
-                <NavLink className={classes.NavLink} to='/products/all'>All Products</NavLink>
+                <NavLink className={classes.NavLink} to='/products/all' onClick={() => this.filterProductListByCategory()}>All Products</NavLink>
                 <NavLink className={classes.NavLink} to='/products/categories'>Categories</NavLink>
             </div>
         )
