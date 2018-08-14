@@ -39,6 +39,7 @@ const contentPage = (props) => {
             <h1>
                 <span>{title}</span>
                 <input placeholder='Search'></input>
+                {title==='Products' ? <button>Create Product</button> : null }
             </h1>
             <hr/>
             <div className={classes.Content}>

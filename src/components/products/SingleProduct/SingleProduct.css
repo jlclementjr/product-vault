@@ -3,5 +3,9 @@
 }
 
 .Links{
-    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ProductName{
+    font-weight: normal;
 }

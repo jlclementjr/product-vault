@@ -18,7 +18,7 @@ class SingleProduct extends Component {
                 <div className={classes.Wrapper}>
                     <Link className={classes.Links} to='/products/all' onClick={this.props.backClick}>Back</Link> 
                     <Link className={classes.Links} to={'/products/' + this.props.product.sku + '/edit'}>Edit</Link>
-                    <h2><span>{this.props.product.sku}</span> - <span>{this.props.product.name}</span></h2>
+                    <h2><span>{this.props.product.sku}</span> - <span className={classes.ProductName}>{this.props.product.name}</span></h2>
                     <p><span>UPC: {this.props.product.upc}</span></p>
                 </div>
             </Auxi>
