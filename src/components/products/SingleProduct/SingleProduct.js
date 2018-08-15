@@ -3,6 +3,9 @@ import Auxi from '../../../hoc/Auxi';
 import {Link} from 'react-router-dom';
 import classes from './SingleProduct.css';
 
+let tempSku;
+let tempName;
+
 class SingleProduct extends Component {
 
     constructor (props) {
@@ -10,6 +13,8 @@ class SingleProduct extends Component {
         this.state = {
             isEditing: false
         }
+        tempSku = this.props.product.sku;
+        tempName = this.props.product.name; 
     }
 
     toggleEditMode()
@@ -20,18 +25,24 @@ class SingleProduct extends Component {
             this.setState({isEditing: true});
     }
 
+    onEditSku(newSku){
+        tempSku = newSku;
+    }
 
+    onEditName(newName){
+        tempName = newName;
+    }
 
     render(){
 
         var editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku + '/edit'} onClick={() => this.toggleEditMode()}>Edit</Link>;
         var sku = <span>{this.props.product.sku}</span>;
-        var productName = <span className={classes.ProductName}>{this.props.product.name}</span>
+        var productName = <span className={tempName}>{this.props.product.name}</span>
 
         if (this.state.isEditing){
             editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku} onClick={() => this.toggleEditMode()}>Save</Link>;
-            sku = <span><input className={classes.EditInput} value={this.props.product.sku}/></span>;
-            productName = <span><input className={classes.EditInput} value={this.props.product.name}/></span>;
+            sku = <span><input onChange={this.onEditSku} className={classes.EditInput} value={tempSku}/></span>;
+            productName = <span><input className={classes.EditInput} value={tempName}/></span>;
         }
 
         
