@@ -38,7 +38,7 @@ const contentPage = (props) => {
         <div className={classes.Wrapper}>
             <h1>
                 <span>{title}</span>
-                <input placeholder='Search'></input>
+                <input className={classes.HeaderSearchBar} placeholder='Search'></input>
                 {title==='Products' ? <button>Create Product</button> : null }
             </h1>
             <hr/>

@@ -9,3 +9,11 @@
 .ProductName{
     font-weight: normal;
 }
+
+.EditInput{
+    height: 24px;
+    font-size: 16px;
+    border: 1px solid gray;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
