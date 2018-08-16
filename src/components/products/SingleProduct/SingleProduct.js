@@ -3,18 +3,15 @@ import Auxi from '../../../hoc/Auxi';
 import {Link} from 'react-router-dom';
 import classes from './SingleProduct.css';
 
-let tempSku;
-let tempName;
-
 class SingleProduct extends Component {
 
     constructor (props) {
         super(props);
         this.state = {
-            isEditing: false
+            isEditing: false,
+            tempSku: this.props.product.sku,
+            tempName: this.props.product.name
         }
-        tempSku = this.props.product.sku;
-        tempName = this.props.product.name; 
     }
 
     toggleEditMode()
@@ -25,24 +22,24 @@ class SingleProduct extends Component {
             this.setState({isEditing: true});
     }
 
-    onEditSku(newSku){
-        tempSku = newSku;
+    onEditSku(event){
+        this.setState({tempSku: event.target.value});
     }
 
-    onEditName(newName){
-        tempName = newName;
+    onEditName(event){
+        this.setState({tempName: event.target.value});
     }
 
     render(){
 
         var editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku + '/edit'} onClick={() => this.toggleEditMode()}>Edit</Link>;
         var sku = <span>{this.props.product.sku}</span>;
-        var productName = <span className={tempName}>{this.props.product.name}</span>
+        var productName = <span className={classes.ProductName}>{this.props.product.name}</span>
 
         if (this.state.isEditing){
             editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku} onClick={() => this.toggleEditMode()}>Save</Link>;
-            sku = <span><input onChange={this.onEditSku} className={classes.EditInput} value={tempSku}/></span>;
-            productName = <span><input className={classes.EditInput} value={tempName}/></span>;
+            sku = <span><input onChange={(event) => this.onEditSku(event)} className={classes.EditInput} value={this.state.tempSku}/></span>;
+            productName = <span><input onChange={(event) => this.onEditName(event)} className={classes.EditInput} value={this.state.tempName}/></span>;
         }
 
         
