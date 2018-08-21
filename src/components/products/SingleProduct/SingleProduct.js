@@ -17,8 +17,10 @@ class SingleProduct extends Component {
 
     toggleEditMode()
     {
-        if (this.state.isEditing)
+        if (this.state.isEditing){
+            this.updateProduct();
             this.setState({isEditing: false});
+        }
         else
             this.setState({isEditing: true});
     }
@@ -33,6 +35,10 @@ class SingleProduct extends Component {
 
     onEditUpc(event){
         this.setState({tempUpc: event.target.value});
+    }
+
+    updateProduct(){
+        console.log('Product Updated');
     }
 
     render(){
