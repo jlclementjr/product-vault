@@ -10,7 +10,8 @@ class SingleProduct extends Component {
         this.state = {
             isEditing: false,
             tempSku: this.props.product.sku,
-            tempName: this.props.product.name
+            tempName: this.props.product.name,
+            tempUpc: this.props.product.upc
         }
     }
 
@@ -30,16 +31,22 @@ class SingleProduct extends Component {
         this.setState({tempName: event.target.value});
     }
 
+    onEditUpc(event){
+        this.setState({tempUpc: event.target.value});
+    }
+
     render(){
 
         var editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku + '/edit'} onClick={() => this.toggleEditMode()}>Edit</Link>;
         var sku = <span>{this.props.product.sku}</span>;
         var productName = <span className={classes.ProductName}>{this.props.product.name}</span>
+        var upc = <span>UPC: {this.props.product.upc}</span>
 
         if (this.state.isEditing){
             editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku} onClick={() => this.toggleEditMode()}>Save</Link>;
             sku = <span><input onChange={(event) => this.onEditSku(event)} className={classes.EditInput} value={this.state.tempSku}/></span>;
-            productName = <span><input onChange={(event) => this.onEditName(event)} className={classes.EditInput} value={this.state.tempName}/></span>;
+            productName = <span><input onChange={(event) => this.onEditName(event)} className={classes.InputProductName} value={this.state.tempName}/></span>;
+            upc = <span>UPC <input onChange={(event) => this.onEditUpc(event)} className={classes.EditInput} value={this.state.tempUpc}/></span>
         }
 
         
@@ -50,7 +57,7 @@ class SingleProduct extends Component {
                     <Link className={classes.Links} to='/products/all' onClick={this.props.backClick}>Back</Link>
                     {editLink}
                     <h2>{sku}<span> - </span>{productName}</h2>
-                    <p><span>UPC: {this.props.product.upc}</span></p>
+                    <p>{upc}</p>
                 </div>
             </Auxi>
         );
