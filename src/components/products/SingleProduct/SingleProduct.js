@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Auxi from '../../../hoc/Auxi';
 import {Link} from 'react-router-dom';
 import classes from './SingleProduct.css';
+import { url, headers } from '../../../services/Api/ApiConfig';
 
 class SingleProduct extends Component {
 
@@ -9,6 +10,10 @@ class SingleProduct extends Component {
         super(props);
         this.state = {
             isEditing: false,
+            isLoading: false,
+
+            product: this.props.product,
+
             tempSku: this.props.product.sku,
             tempName: this.props.product.name,
             tempUpc: this.props.product.upc
@@ -37,7 +42,22 @@ class SingleProduct extends Component {
         this.setState({tempUpc: event.target.value});
     }
 
+    handleFetchError(error){
+        console.log(error);
+    }
+
     updateProduct(){
+        console.log(JSON.stringify(this.state.product));
+        fetch(
+            url, { 
+              method: 'PUT',
+              body: JSON.stringify(this.state.product)},
+            headers)
+        .then(response => response.json())
+        .catch(err => this.handleFetchError(err))
+        .then(product => this.setState({product, isLoading: false}))
+        .then(product => console.log('New Product: ' + JSON.stringify(product)));
+
         console.log('Product Updated');
     }
 
@@ -49,7 +69,7 @@ class SingleProduct extends Component {
         var upc = <span>UPC: {this.props.product.upc}</span>
 
         if (this.state.isEditing){
-            editLink = <Link className={classes.Links} to={'/products/' + this.props.product.sku} onClick={() => this.toggleEditMode()}>Save</Link>;
+            editLink = <Link className={classes.Links} to={'/products/' + this.state.product.sku} onClick={() => this.toggleEditMode()}>Save</Link>;
             sku = <span><input onChange={(event) => this.onEditSku(event)} className={classes.EditInput} value={this.state.tempSku}/></span>;
             productName = <span><input onChange={(event) => this.onEditName(event)} className={classes.InputProductName} value={this.state.tempName}/></span>;
             upc = <span>UPC <input onChange={(event) => this.onEditUpc(event)} className={classes.EditInput} value={this.state.tempUpc}/></span>

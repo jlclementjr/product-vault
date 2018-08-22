@@ -5,8 +5,7 @@ import ContentSidebar from '../../../containers/ContentSidebar/ContentSidebar';
 import Auxi from '../../../hoc/Auxi';
 import { NavLink } from 'react-router-dom';
 import classes from '../../../containers/ContentSidebar/ContentSidebar.css'
-
-const url = 'http://localhost:64070/api/products';
+import { url, headers } from '../../../services/Api/ApiConfig';
 
 class ProductContentPage extends Component 
 {
@@ -31,21 +30,16 @@ class ProductContentPage extends Component
     }
 
     FetchAllProducts(){
-        var myHeaders = new Headers();
-        myHeaders.append('authorization', 'Bearer AccessToken');
 
-        fetch(url, myHeaders)
+        fetch(url, { method:'GET' }, headers)
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(products => this.setState({products, isLoading: false}));
     }
 
     FetchSingleProduct(productID){
-        var myHeaders = new Headers();
-        myHeaders.append('authorization', 'Bearer AccessToken');
-
         const newUrl = url + '/' + productID.toString();
-        fetch(newUrl, myHeaders)
+        fetch(newUrl, { method: 'GET' }, headers)
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(singleProduct => this.setState({singleProduct, isLoading: false}));
@@ -94,6 +88,7 @@ class ProductContentPage extends Component
                 if (this.state.isSingleProduct)
                     content = <SingleProduct product={this.state.singleProduct} 
                     backClick={this.handleBackToProductListClick.bind(this)}
+                    handleError={this.handleFetchError.bind(this)}
                     />
                 else
                     content = <ProductList products={this.state.products} clicked={this.handleClickedProductFromList.bind(this)}/>
