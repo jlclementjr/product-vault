@@ -47,12 +47,25 @@ class SingleProduct extends Component {
     }
 
     updateProduct(){
-        //console.log(JSON.stringify(this.state.product));
-        fetch(
-            url, { 
+        var prod = {
+            id: 4,
+            sku: "REY647ES4",
+            upc: "8085598564AD",
+            name: "Newer IT WORKED",
+            length: 10,
+            width: 10,
+            height: 10,
+            weight: 10,
+            volume: 4
+        }
+
+
+
+        fetch(url, { 
               method: 'PUT',
-              body: JSON.stringify(this.state.product)},
-            headers)
+              headers,
+              body: JSON.stringify(prod)
+            })
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
         .then(product => this.setState({product}))
