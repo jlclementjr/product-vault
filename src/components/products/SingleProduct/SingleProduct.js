@@ -47,7 +47,7 @@ class SingleProduct extends Component {
     }
 
     updateProduct(){
-        console.log(JSON.stringify(this.state.product));
+        //console.log(JSON.stringify(this.state.product));
         fetch(
             url, { 
               method: 'PUT',
@@ -55,7 +55,7 @@ class SingleProduct extends Component {
             headers)
         .then(response => response.json())
         .catch(err => this.handleFetchError(err))
-        .then(product => this.setState({product, isLoading: false}))
+        .then(product => this.setState({product}))
         .then(product => console.log('New Product: ' + JSON.stringify(product)));
 
         console.log('Product Updated');
